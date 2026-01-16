@@ -4,11 +4,11 @@ export default class AribaApi extends cds.RemoteService {
 
     this.before("READ", "*", (req) => {
       console.log(req);
-      const APIKey = process.env.apikey;
-      const where = req.query.SELECT.from.ref.find((obj) => obj.where);
-      if (where) req.query = `GET /orders?$filter=documentNumber eq 'DO240'`;
+      const apiKey = process.env.apikey;
+      const whereClause = req.query.SELECT.from.ref.find((obj) => obj.where);
+      if (whereClause) req.query = `GET /orders?$filter=documentNumber eq 'DO240'`;
       else req.query = `GET /orders`;
-      req.headers["APIKey"] = APIKey;
+      req.headers["APIKey"] = apiKey;
 
     });
 

@@ -45,15 +45,6 @@
                     "url": "https://sandbox.api.sap.com/ariba/api/purchase-orders/v1/sandbox"
                 }
             },
-            "GA5": {
-                "kind": "odata-v2",
-                "model": "srv/external/ordersGA5",
-                "credentials": {
-                    "path": "/sap/opu/odata/sap/ZORDERS_SERVICE_BINDING",
-                    "destination": "GA5",
-                    "forwardAuthToken": true
-                }
-            },
             "[production]": {
                 "auth": {
                     "kind": "xsuaa"

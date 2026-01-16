@@ -1,25 +1,24 @@
-# Getting Started
+# Ariba Order Integration Service
 
-Welcome to your new project.
+This CAP project reads purchase orders from the Ariba API, exposes them over OData, and forwards selected orders to a GA5-compatible service. It exists to provide a focused, real-world integration slice that is easy to run and review.
 
-It contains these folders and files, following our recommended project layout:
+## What this integration demonstrates
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+- CAP service modeling and handler wiring for remote services
+- OData V4 exposure for UI and integration consumers
+- A practical flow from Ariba purchase orders to a GA5 destination
 
+## How to run
 
-## Next Steps
+- `npm install`
+- Export `apikey` for the Ariba sandbox (used by `srv/external/AribaAPI.js`)
+  - Example: `export apikey=YOUR_ARIBA_SANDBOX_API_KEY`
+- `cds watch`
+- Open `http://localhost:4004/orders_integration/webapp/index.html`
+ 
+The GA5 service is backed by local SQLite in this repo, so no external GA5 access is required.
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+## Documentation
 
-
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+- Examples and payloads: [`docs/examples.md`](docs/examples.md)
+- Folder overview: [`docs/file-structure.md`](docs/file-structure.md)

@@ -9,6 +9,13 @@
         html, body, body > div, #container, #container-uiarea {
             height: 100%;
         }
+        #back-to-list-container {
+            position: fixed;
+            right: 0.1rem;
+            bottom: 0.1rem;
+            z-index: 1000;
+            display: none;
+        }
     </style>
     <script
         id="sap-ui-bootstrap"
@@ -31,5 +38,60 @@
         data-settings='{"id" : "ordersintegration"}'
         data-handle-validation="true"
     ></div>
+    <div id="back-to-list-container"></div>
+    <script>
+        (function() {
+            function isObjectPage() {
+                return window.location.hash.indexOf("Orders_Ariba(") !== -1;
+            }
+
+            function updateVisibility() {
+                var container = document.getElementById("back-to-list-container");
+                if (!container) {
+                    return;
+                }
+                container.style.display = isObjectPage() ? "block" : "none";
+            }
+
+            function navigateBack() {
+                if (window.history.length > 1) {
+                    window.history.back();
+                    return;
+                }
+                window.location.hash = "";
+            }
+
+            function initButton() {
+                if (!window.sap || !sap.ui || !sap.ui.getCore) {
+                    updateVisibility();
+                    return;
+                }
+
+                sap.ui.getCore().attachInit(function() {
+                    var container = document.getElementById("back-to-list-container");
+                    if (!container || container.hasChildNodes()) {
+                        updateVisibility();
+                        return;
+                    }
+
+                    sap.ui.require(["sap/m/Button"], function(Button) {
+                        var button = new Button({
+                            text: "Back to list",
+                            type: "Emphasized",
+                            press: navigateBack
+                        });
+                        button.placeAt(container);
+                        updateVisibility();
+                    });
+                });
+            }
+
+            window.addEventListener("hashchange", updateVisibility);
+            window.addEventListener("load", function() {
+                initButton();
+                updateVisibility();
+            });
+        })();
+    </script>
 </body>
 </html>

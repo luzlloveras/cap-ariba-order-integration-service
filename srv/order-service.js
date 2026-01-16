@@ -1,7 +1,5 @@
 export default class OrderService extends cds.ApplicationService {
   async init() {
-
-// Leer Orders de ariba
     const {
       Orders
     } = this.entities
@@ -9,13 +7,11 @@ export default class OrderService extends cds.ApplicationService {
     this.on("READ", Orders, async (req) => {
       const aribaApi = await cds.connect.to("AribaAPI")
       return aribaApi.tx(req).run(req.query)
-
     })
 
-    this.after("READ", Orders, response => {
-      response.$count = response.length
-      console.log(response)
+    this.after("READ", Orders, orders => {
+      orders.$count = orders.length
+      console.log(orders)
     })
-
   }
 }

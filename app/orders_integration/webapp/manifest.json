@@ -152,16 +152,12 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "showBackButton": true,
                             "editableHeaderContent": false,
                             "entitySet": "Orders_Ariba"
                         }
                     }
                 }
-            }
-        },
-        "extends": {
-            "extensions": {
-                "sap.ui.controllerExtensions": {}
             }
         }
     },
