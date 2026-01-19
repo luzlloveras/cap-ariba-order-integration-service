@@ -24,7 +24,6 @@
     },
     "scripts": {
         "start": "cds-serve",
-        "watch-ariba_last": "cds watch --open ariba_last/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-ariba-integration-s4h": "cds watch --open ariba-integration-s4h/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy ariba_last --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
